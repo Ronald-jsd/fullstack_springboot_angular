@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-agregar-producto',
   imports: [FormsModule, CommonModule],
-  templateUrl: './agregar-producto.html', // Cambiado: sin .component
-  styleUrls: ['./agregar-producto.css'], // Cambiado: sin .component
+  templateUrl: './agregar-producto.html', 
+  styleUrls: ['./agregar-producto.css'], 
   standalone: true,
 })
 export class AgregarProducto {
@@ -93,7 +93,7 @@ export class AgregarProducto {
 
         if (errorData.message && typeof errorData.message === 'object') {
           console.log('ERRORES DEL BACKEND POR CAMPO:', errorData.message);
-          this.erroresValidacion = errorData.message; // Asigna los errores del backend
+          this.erroresValidacion = errorData.message;
           this.mensajeError = '';
         }
         else if (errorData.error) {

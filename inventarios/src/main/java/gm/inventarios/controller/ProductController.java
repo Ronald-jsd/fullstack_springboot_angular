@@ -66,7 +66,7 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
         iProductService.deleteProductById(id);
-        return ResponseEntity.noContent().build(); // 404
+        return ResponseEntity.noContent().build();
     }
 
 }
