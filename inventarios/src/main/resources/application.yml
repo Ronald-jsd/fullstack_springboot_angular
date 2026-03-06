@@ -1,0 +1,25 @@
+
+spring:
+  application:
+    name: inventarios
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: "[%thread] %-5level: %logger - %msg%n"

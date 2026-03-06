@@ -1,0 +1,110 @@
+<div class="form-wrapper">
+  
+  <div class="form-header">
+    <div>
+      <h2 class="page-title"><i class="fas fa-edit me-2"></i>Editar Producto</h2>
+      <p class="page-subtitle">Actualice los datos del producto a continuación.</p>
+    </div>
+    @if (cargandoDatos) {
+      <div class="inline-loader">
+        <div class="spinner-sm"></div>
+        <span>Cargando...</span>
+      </div>
+    }
+  </div>
+
+  @if (!cargandoDatos) {
+    
+    <!-- Mensaje de Error Global -->
+    @if (mensajeError) {
+      <div class="alert-banner alert-error">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        <span>{{ mensajeError }}</span>
+        <button type="button" class="btn-close" (click)="mensajeError = ''">&times;</button>
+      </div>
+    }
+
+    <form (ngSubmit)="onSubmit()" #productoForm="ngForm" class="clean-form">
+      
+      <div class="form-group">
+        <label for="descripcion">Descripción del Producto <span class="required">*</span></label>
+        <div class="input-group">
+          <input type="text"
+                 id="descripcion"
+                 name="descripcion"
+                 placeholder="Ej: Laptop Gamer X200"
+                 [(ngModel)]="producto.descripcion"
+                 #descripcion="ngModel"
+                 required
+                 minlength="3"
+                 [class.is-invalid]="erroresValidacion?.descripcion || (descripcion.invalid && descripcion.touched)">
+          <div class="input-icon-right">
+            <i class="fas fa-tag"></i>
+          </div>
+        </div>
+        <small class="text-error" *ngIf="erroresValidacion?.descripcion || (descripcion.invalid && descripcion.touched)">
+          {{ erroresValidacion?.descripcion || 'Campo requerido (mínimo 3 caracteres)' }}
+        </small>
+      </div>
+
+      <div class="form-grid">
+        
+        <div class="form-group">
+          <label for="precio">Precio <span class="required">*</span></label>
+          <div class="input-group with-prefix">
+            <span class="prefix">S/</span>
+            <input type="number"
+                   id="precio"
+                   name="precio"
+                   placeholder="0.00"
+                   step="0.01"
+                   [(ngModel)]="producto.precio"
+                   #precio="ngModel"
+                   required
+                   min="0"
+                   [class.is-invalid]="erroresValidacion?.precio || (precio.invalid && precio.touched)">
+          </div>
+          <small class="text-error" *ngIf="erroresValidacion?.precio || (precio.invalid && precio.touched)">
+            {{ erroresValidacion?.precio || 'Ingrese un precio válido' }}
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="existencia">Stock <span class="required">*</span></label>
+          <div class="input-group">
+            <input type="number"
+                   id="existencia"
+                   name="existencia"
+                   placeholder="0"
+                   [(ngModel)]="producto.existencia"
+                   #existencia="ngModel"
+                   required
+                   min="0"
+                   [class.is-invalid]="erroresValidacion?.existencia || (existencia.invalid && existencia.touched)">
+            <div class="input-icon-right">
+              <i class="fas fa-boxes"></i>
+            </div>
+          </div>
+          <small class="text-error" *ngIf="erroresValidacion?.existencia || (existencia.invalid && existencia.touched)">
+            {{ erroresValidacion?.existencia || 'Ingrese una cantidad válida' }}
+          </small>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="cargando || productoForm.invalid">
+          @if (cargando) {
+            <i class="fas fa-circle-notch fa-spin me-2"></i> Procesando...
+          } @else {
+            <i class="fas fa-save me-2"></i> Guardar Cambios
+          }
+        </button>
+      </div>
+
+    </form>
+  }
+</div>

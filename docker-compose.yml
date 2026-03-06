@@ -1,0 +1,52 @@
+services:
+  mysql:
+    image: mysql:8
+    restart: always
+    networks:
+      - inventario-net
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./inventarios
+    restart: always
+    networks:
+      - inventario-net
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+
+  frontend:
+    build: ./inventario-app
+    restart: always
+    networks:
+      - inventario-net
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+networks:
+  inventario-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+

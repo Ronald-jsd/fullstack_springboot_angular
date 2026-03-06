@@ -1,0 +1,11 @@
+# Node.js / Angular
+node_modules/
+dist/
+.env
+
+# Spring Boot
+target/
+*.jar
+
+# Docker
+docker-compose.override.yml
