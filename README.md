@@ -72,7 +72,7 @@ inventarios_angular/
 ```
 
 ## Arquitectura - Diagrama
-![Arquitectura Gestión de Inventarios](assets/arquitectura-sistema-fullstack-angular-springboot.png)
+![Arquitectura-Gestión de Inventarios](assets/arquitectura-sistema-fullstack-angular-springboot.png)
 
 
 ## Características
