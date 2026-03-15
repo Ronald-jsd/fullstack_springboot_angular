@@ -9,3 +9,6 @@ target/
 
 # Docker
 docker-compose.override.yml
+
+inventario-app/README_ANGULAR_BASICS.md
+inventario-app/README_ESTUDIO.md

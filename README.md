@@ -7,6 +7,7 @@ Un sistema de gestión de inventarios full-stack construido con Angular para el 
 Esta aplicación proporciona una solución completa para gestionar inventarios de productos. Cuenta con una interfaz web responsiva para realizar operaciones CRUD en productos, con un backend robusto de API REST que maneja la persistencia de datos y validación.
 
 ![Gestión de Inventarios](assets/gestion-fullstack-angular1.png)
+
 ## Estructura del Proyecto
 
 ```
@@ -69,6 +70,10 @@ inventarios_angular/
 │                   └── inventarios/
 └── README.md
 ```
+
+## Arquitectura - Diagrama
+![Arquitectura Gestión de Inventarios](assets/arquitectura-sistema-fullstack-angular-springboot.png)
+
 
 ## Características
 

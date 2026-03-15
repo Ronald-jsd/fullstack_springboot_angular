@@ -26,4 +26,5 @@ public class ProductoDto {
     @NotNull(message = "La existencia es obligatorio")
     @Min(value = 6, message = "El stock mínimo permitido es 6")
     private Integer existencia;
+
 }

@@ -17,6 +17,8 @@ spring:
       mode: always
   main:
     banner-mode: off
+  profiles:
+    active: test
 
 logging:
   level:
